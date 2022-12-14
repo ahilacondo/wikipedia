@@ -10,12 +10,14 @@
     <div class="form-box">
       <form action="./cgi-bin/new.pl" method="get">
         <label for="name">Título</label>
-        <input type="text" name="name" placeholder="Escribe tu respuesta"/><br /><br>
+        <input type="text" name="name" placeholder="Escribe tu respuesta"/><br />
         <label for="markdown">Texto</label>
-        <textarea name="markdown" rows="10" class="input-text" placeholder="Escribe tu respuesta"></textarea><br /><br>
-        <input type="submit" value="Enviar" />
+        <textarea name="markdown" rows="10" class="input-text" placeholder="Escribe tu respuesta"></textarea><br>
+        <br><input type="submit" value="Enviar" /></br>
       </form>
-      <a href="./cgi-bin/list.pl">Cancelar</a>
+      <form action="./cgi-bin/list.pl" method="get">
+         <input class="boton" type="submit" value="Cancelar" />
+      </form>
     </div>
   </body>
 </html>
