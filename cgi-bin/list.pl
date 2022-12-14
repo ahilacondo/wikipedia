@@ -29,7 +29,7 @@ while(my @row = $sth->fetchrow_array){
     print "<li>\n";
       print "<a href='view.pl?name=@row'>@row</a>\n";
       print "<a href='' class='delete-button'>X</a>\n";
-      print "<a href='' class='edit-button'>E</a>\n";
+      print "<a href='edit.pl?name=@row' class='edit-button'>E</a>\n";
     print "</li>\n";
 }
 print "</ul>\n";
