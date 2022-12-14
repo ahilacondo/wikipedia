@@ -122,7 +122,7 @@ sub renderHTMLpage{
   my $title = $_[0];
   my $titulo = $_[1];
   my $body = $_[2];
-  my $link_delete = "<a href='' id='linkboton'>X</a>";
+  my $link_delete = "<a href='delete.pl?fn=$titulo' id='linkboton'>X</a>";
   my $link_edit = "<a href='edit.pl?fn=$titulo' id='linkboton'>E</a>";
   my $html = <<"HTML";
     <!DOCTYPE html>
