@@ -65,6 +65,7 @@ sub renderHTMLpage{
   <html lang="es">
     <head>
       <title>$title</title>
+      <link rel="stylesheet" href="../css/styles.css">
       <meta charset="UTF-8">
     </head>
     <body>
