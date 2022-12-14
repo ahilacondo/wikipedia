@@ -37,8 +37,8 @@ $sth->finish;
 $dbh->disconnect;
 
 print <<HTML;
-    <a href="">Nueva Página</a><br>
-    <a href="">Volver al Inicio</a>
+    <a href="./../new.html">Nueva Página</a><br>
+    <a href="./../index.html">Volver al Inicio</a>
   </body>
 </html>
 HTML
