@@ -10,6 +10,7 @@ print <<HTML;
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/styles.css" />
     <title>Página Eliminada</title>
   </head>
   <body>
