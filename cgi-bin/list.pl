@@ -14,7 +14,8 @@ print <<HTML;
     <title>Listado de páginas</title>
   </head>
   <body>
-  <h1>Nuestras páginas de wiki</h1>
+    <div class="form-box">
+         <h1>Nuestras páginas de wiki</h1>
 HTML
 
 #Base de datos
@@ -27,7 +28,7 @@ my $sth = $dbh->prepare("SELECT name FROM Wiki");
 $sth->execute();
 print "<ul>\n";
 while(my @row = $sth->fetchrow_array){
-    print "<li>\n";
+    print "<li class='paginas'>\n";
       print "<a href='view.pl?name=@row'>@row</a>\n";
       print "<a href='delete.pl?name=@row'><button>X</button></a>\n";
       print "<a href='edit.pl?name=@row'><button>E</button></a>\n";
@@ -38,8 +39,9 @@ $sth->finish;
 $dbh->disconnect;
 
 print <<HTML;
-    <a href="./../new.html">Nueva Página</a><br>
-    <a href="./../index.html">Volver al Inicio</a>
+      <a href="./../new.html">Nueva Página</a><br>
+      <a href="./../index.html">Volver al Inicio</a>
+    </div>
   </body>
 </html>
 HTML
