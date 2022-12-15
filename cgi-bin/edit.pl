@@ -31,16 +31,20 @@ sub renderBody{
   my $name = $_[0];
   my $markdown = $_[1];
   my $body = <<"BODY";
-     <h1>$name</h1>
-     <form action="new.pl">
-      <label for="markdown">Texto</label>
-        <textarea id="cuadro_texto" name="markdown" required>$markdown</textarea>
-      <br>
-      <input type="hidden" name="name" value="$name">
-      <input type="submit" id="boton_submit" value="Enviar">
+  <div class='form-box'>
+    <h1>$name</h1>
+    <form action="new.pl">
+        <label for="markdown">Texto</label>
+        <textarea class="input-text" id="cuadro_texto" name="markdown" required>$markdown</textarea>
+        <br>
+        <input type="hidden" name="name" value="$name"><br><br/>
+        <input class="boton"type="submit" id="boton_submit" value="Enviar">
     </form>
     <br>
-    <a href="list.pl">Cancelar</a>
+    <form action="list.pl">
+        <input class="boton" type="submit" value="Cancelar" />
+    </form>
+  </div>
 BODY
   return $body;
 }
@@ -57,7 +61,7 @@ my $html = <<"HTML";
       <meta charset="UTF-8">
     </head>
     <body>
-    $body
+      $body
     </body>
   </html>
 HTML
