@@ -48,11 +48,12 @@ sub renderBody{
   my $body = <<"BODY";
   <h1>$name</h1>
     <pre>
-$markdown
+      $markdown
     </pre>
     <hr>
     <h2>$estado</h2>
-    <h3><a href="view.pl?name=$name">Ver Página</a> - <a href="list.pl">Listado de Páginas</a></h3>
+    <a href="view.pl?name=$name">Ver Página</a><br>
+    <a href="list.pl">Listado de Páginas</a>
 BODY
   return $body;
 }
@@ -69,7 +70,9 @@ sub renderHTMLpage{
       <meta charset="UTF-8">
     </head>
     <body>
-      $body
+      <div class="form-box">
+         $body
+      </div>
     </body>
   </html>
 HTML
