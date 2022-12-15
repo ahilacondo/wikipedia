@@ -133,8 +133,10 @@ sub renderHTMLpage{
      <meta charset="UTF-8">
      </head>
        <body>
-        <h2><a href="list.pl"><button>Retroceder</button></a> - $link_delete $link_edit</h2>
-         $body
+        <div>
+            <h2><a href="list.pl"><button>Retroceder</button></a> - $link_delete $link_edit</h2>
+            $body
+        </div>
        </body>
     </html>
 HTML
