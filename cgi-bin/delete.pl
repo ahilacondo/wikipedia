@@ -32,8 +32,12 @@ $sth->execute($name);
 $dbh->disconnect;
 
 print <<HTML;
-    <h1 class="title-delete">Página eliminada con éxito</h1>
-    <h2 class="link-list"><a href="list.pl">Volver a la lista</a></h2>
+    <div class="form-box">
+        <h1 class="title-delete">Página eliminada con éxito</h1>
+        <form action="list.pl">
+           <input class="boton" type="submit" value="VOLVER\n A LA LISTA" />
+        </form>
+    </div>
   </body>
 </html>
 HTML
