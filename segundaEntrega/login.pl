@@ -10,8 +10,7 @@ print $q->header('text/xml');
 
 my $user = $q->param('user');
 my $password = $q->param('password');
-#my $user = "A";
-#my $password = "123";
+
 if(defined($user) and defined($password)){
     my @datos = checkLogin($user, $password);
     if(@datos){
