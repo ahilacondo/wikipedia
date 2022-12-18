@@ -22,7 +22,7 @@ sub check{
   my $password = 'pweb1';
   my $title = $_[0];
   my $owner = $_[1];
-  my $dsn = 'DBI:MariaDB:database=pweb1;host=192.168.1.54';
+  my $dsn = 'DBI:MariaDB:database=pweb1;host=192.168.1.7';
   my $dbh = DBI->connect($dsn, $user, $password) or die("No se pudo conectar!");
   my $sql = "SELECT * FROM Articles WHERE title=? AND owner=?";
   my $sth = $dbh->prepare($sql);
