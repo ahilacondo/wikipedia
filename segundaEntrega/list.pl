@@ -7,13 +7,10 @@ use DBI;
 my $q = CGI->new;
 print $q->header('text/xml');
 
-my $title = $q->param('title');
-my $text = $q->param('text');
 my $owner = $q->param('owner');
 
-if(checkOwner($owner) && defined($title) && defined($text) && defined($owner)){
-  insertaBD($title, $text, $owner);
-  my $cuerpoXML= renderBody($title, $text);
+if(defined($owner) && checkOwner($owner)){
+  my $cuerpoXML = searchBD($owner);
   print renderXML($cuerpoXML);
 }else{
   print renderXML();
@@ -24,7 +21,7 @@ sub checkOwner{
   my $owner = $_[0];
   my $dsn = 'DBI:MariaDB:database=pweb1;host=192.168.1.54';
   my $dbh = DBI->connect($dsn, $user, $password) or die("No se pudo conectar!");
-  my $sql = "SELECT * FROM Users WHERE userName=?";
+  my $sql = "SELECT * FROM Articles WHERE owner=?";
   my $sth = $dbh->prepare($sql);
   $sth->execute($owner);
   my @row = $sth->fetchrow_array;
@@ -32,27 +29,32 @@ sub checkOwner{
   $dbh->disconnect;
   return @row;
 }
-sub insertaBD{
+sub searchBD{
   my $user = 'alumno';
   my $password = 'pweb1';
-  my $title = $_[0];
-  my $text = $_[1];
-  my $owner = $_[2];
+  my $owner = $_[0];
+  my $body = "";
   my $dsn = 'DBI:MariaDB:database=pweb1;host=192.168.1.7';
   my $dbh = DBI->connect($dsn, $user, $password) or die("No se pudo conectar!");
-  my $sql = "INSERT INTO Articles(title,owner,text)VALUES(?,?,?)";
+  my $sql = "SELECT * FROM Articles WHERE owner=?";
   my $sth = $dbh->prepare($sql);
-  $sth->execute($title, $owner, $text);
+  $sth->execute($owner);
+  while(my @row = $sth->fetchrow_array){
+    $body .= renderBody(@row);
+  }
   $sth->finish;
   $dbh->disconnect;
+  return $body;
 }
 
 sub renderBody{
   my $title = $_[0];
-  my $text = $_[1];
+  my $owner = $_[1];
   my $cuerpo = <<"BODY";
-    <title>$title</title>
-    <text>$text</text>
+    <article>
+      <owner>$owner</owner>
+      <title>$title</title>
+    </article>
 BODY
   return $cuerpo;
 }
@@ -64,9 +66,9 @@ sub renderXML{
   }
     my $xml = <<"XML";
 <?xml version='1.0' encoding= 'utf-8'?>
-    <article>
+    <articles>
       $cuerpo
-    </article>
+    </articles>
 XML
 return $xml
 }
